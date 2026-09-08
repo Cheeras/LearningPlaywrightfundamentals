@@ -196,4 +196,29 @@ Playwright browsers are stored locally at:
 ```
 C:\Users\<user>\AppData\Local\ms-playwright\
 ```
-This project uses a locally downloaded Chromium binary. The config points to it via `launchOptions.executablePath` in `playwright.config.ts`. 
+This project uses a locally downloaded Chromium binary. The config points to it via `launchOptions.executablePath` in `playwright.config.ts`.
+
+---
+
+### License: MIT vs ISC
+
+This project's `package.json` currently specifies the **ISC** license. Both MIT and ISC are **permissive open-source licenses** — they allow anyone to use, modify, distribute, and sell the software with very few restrictions. However, there are some differences:
+
+| Aspect | MIT License | ISC License |
+|--------|-------------|-------------|
+| **Full name** | Massachusetts Institute of Technology License | Internet Systems Consortium License |
+| **Length** | Slightly longer (~200 words) | Shorter (~100 words) |
+| **Wording** | Uses formal legal language | Uses simpler, more concise language |
+| **Key requirement** | Must include the copyright notice and permission notice in all copies | Must include the copyright notice and permission notice in all copies |
+| **Liability clause** | Explicitly states "no liability" in separate sentences | States "no liability" more compactly |
+| **Popularity** | Most widely used open-source license (GitHub #1) | Less common, mostly used by npm packages |
+| **Used by** | React, Angular, jQuery, Node.js, Playwright itself | npm, Express.js, some smaller Node.js packages |
+| **Compatibility** | Fully compatible with GPL, Apache 2.0 | Fully compatible with GPL, Apache 2.0 |
+
+**In practice, both licenses offer the same freedoms and protections.** The ISC license is essentially a simplified version of MIT — it achieves the same legal effect with fewer words. Many npm packages use ISC because it originated from the npm ecosystem.
+
+**Which one should you use?**
+- **MIT** — if you want maximum recognition and clarity (the industry standard)
+- **ISC** — if you prefer minimal wording and your project is Node.js/npm-focused (perfectly valid)
+
+> **Current project status:** This project uses the **ISC** license. You can switch to MIT by changing the `"license"` field in `package.json` from `"ISC"` to `"MIT"` and including a `LICENSE` file with the MIT license text. 
