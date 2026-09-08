@@ -30,7 +30,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: true
+    headless: false
   },
 
   /* Configure projects for major browsers */
@@ -40,7 +40,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: {
-          executablePath: 'C:\\Users\\Shankar\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome.exe',
+          executablePath: 'C:\\Users\\Shankar\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64\\chrome.exe',
         },
       },
     },
