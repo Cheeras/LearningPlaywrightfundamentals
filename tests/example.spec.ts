@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-
+//when in click on run button internally it will exeucte followign command
+//npx playwright test --project=chromium -g "has title"
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
