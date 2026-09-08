@@ -81,3 +81,25 @@ We had moved the files to be directly inside `chromium-1243\` instead of inside 
 **Verification:**
 - ✅ `npx playwright open https://playwright.dev/` — works now (opens browser)
 - ✅ `npx playwright test --project=chromium` — 2/2 tests pass
+
+### Issue 2: `playwright screenshot https://playwright.dev playwright.jpeg` failing
+
+**Issue:**
+Running `npx playwright screenshot https://playwright.dev playwright.jpeg` gave this error:
+```
+Error: command.parse: Executable doesn't exist at 
+C:\Users\Shankar\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+```
+
+**Root Cause:**
+The `playwright screenshot` command uses the **headless shell** binary (`chromium_headless_shell-1243`) by default, not the full Chrome browser. The headless shell is a separate, smaller executable designed specifically for automated tasks like screenshots. We never installed this binary — we only installed the full Chrome browser.
+
+**Fix Applied:**
+Use the `--channel chrome` flag to tell Playwright to use the **system-installed Chrome** instead of the missing headless shell:
+
+```bash
+npx playwright screenshot --channel chrome https://playwright.dev playwright.jpeg
+```
+
+**Verification:**
+- ✅ `npx playwright screenshot --channel chrome https://playwright.dev playwright.jpeg` — works now (captures screenshot successfully)
