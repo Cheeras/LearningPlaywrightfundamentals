@@ -1,0 +1,23 @@
+{
+  "name": "learningplaywrightfundamentals",
+  "version": "1.0.0",
+  "description": "\"# LearningPlaywrightfundamentals\"",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cheeras/LearningPlaywrightfundamentals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Cheeras/LearningPlaywrightfundamentals/issues"
+  },
+  "homepage": "https://github.com/Cheeras/LearningPlaywrightfundamentals#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.5.0"
+  }
+}
