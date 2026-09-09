@@ -20,6 +20,7 @@ A Playwright end-to-end testing project for learning browser automation fundamen
 
 ```
 LearningPlaywrightFundamentals/
+├── .env.example
 ├── .gitignore
 ├── .vscode/
 │   └── settings.json
@@ -39,6 +40,7 @@ LearningPlaywrightFundamentals/
 | Item | One-line Purpose |
 |------|-----------------|
 | `.gitignore` | Tells Git which files/folders to exclude from version control |
+| `.env.example` | Template file listing required environment variables (safe to commit) |
 | `package.json` | Project metadata & npm dependencies manifest |
 | `package-lock.json` | Locks exact dependency versions for reproducible installs |
 | `.vscode/settings.json` | Project-level VS Code settings (enables Playwright test UI in spec files) |
@@ -155,6 +157,62 @@ This file tells Git which files and folders to **ignore** — meaning they won't
 **Who uses it?** Git — it reads `.gitignore` before every `git add` / `git commit` operation.
 
 **Auto-generated?** Yes — by `npm init playwright@latest` (scaffolding phase).
+
+---
+
+#### `.env` (Environment Variables file)
+**Type:** Configuration file (key=value format) — **NOT committed to Git**
+
+A `.env` file stores **sensitive configuration values** as key-value pairs, such as:
+```
+BASE_URL=https://example.com
+USERNAME=testuser
+PASSWORD=supersecret123
+API_KEY=abc123xyz
+```
+
+**Why is it used in this project?**
+Playwright tests often need environment-specific data like login credentials, API endpoints, or base URLs. Instead of hardcoding these values in test files (which is a security risk and makes tests non-portable), you store them in `.env` and load them using a library like `dotenv`.
+
+**Why is `.env` NOT pushed to Git?**
+- It contains **secrets** — passwords, API keys, tokens, etc. Committing these to a public (or even private) repo is a major security risk.
+- It contains **developer/machine-specific values** — each developer may have different credentials or local URLs.
+- It's already listed in `.gitignore` (Playwright scaffolding adds `.env` by default).
+
+If `.env` were accidentally committed, anyone with repo access would see your passwords and API keys. Use **GitHub Secrets** or a **vault service** for CI/CD instead.
+
+---
+
+#### `.env.example`
+**Type:** Template file (key=value format) — **SAFE to commit**
+
+`.env.example` is the **public template** that shows other developers **which environment variables are needed** but without exposing the actual secret values:
+
+```
+BASE_URL=<your-base-url>
+USERNAME=<your-username>
+PASSWORD=<your-password>
+API_KEY=<your-api-key>
+```
+
+**Why is `.env.example` important?**
+1. **Onboarding** — A new developer cloning the repo knows exactly which variables to create in their own `.env` file.
+2. **Documentation** — Acts as a living specification of all environment dependencies.
+3. **Safety** — Contains placeholders, not real secrets, so it's safe to commit.
+
+**Typical workflow:**
+```
+1. Clone repo
+2. Copy .env.example → .env
+3. Fill in real values in .env
+4. Run tests
+```
+
+**Does this project have one?** Not yet — it's created manually when you decide to use environment variables. You can create it anytime with:
+
+```bash
+echo "BASE_URL=" > .env.example
+```
 
 ---
 
