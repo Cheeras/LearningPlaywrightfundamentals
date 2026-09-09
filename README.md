@@ -7,7 +7,7 @@ A Playwright end-to-end testing project for learning browser automation fundamen
 **Note:** Playwright is a **Node.js library** — it runs on the Node.js runtime, not in a browser. Node.js and npm are required because:
 
 - **Node.js** provides the JavaScript runtime that executes Playwright test scripts, handles async I/O, and communicates with browser instances via the Chrome DevTools Protocol (CDP).
-- **npm** (Node Package Manager) downloads and manages every package listed in `package.json` — currently `@playwright/test` and `@types/node` — along with all of their transitive dependencies from the npm registry.
+- **npm** (Node Package Manager) reads `package.json` to determine which packages to install (currently `@playwright/test` and `@types/node`), downloads them from the npm registry along with all transitive dependencies, and records the exact installed versions in `package-lock.json` for reproducible builds.
 
 **Minimum versions required:**
 
