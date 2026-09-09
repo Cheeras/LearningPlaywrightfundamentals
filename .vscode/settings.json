@@ -1,0 +1,6 @@
+{
+  "playwright.reuseBrowser": true,
+  "playwright.env": {},
+  "playwright.config": "playwright.config.ts",
+  "playwright.output": "playwright-report"
+}

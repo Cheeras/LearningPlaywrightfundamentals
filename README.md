@@ -21,6 +21,8 @@ A Playwright end-to-end testing project for learning browser automation fundamen
 ```
 LearningPlaywrightFundamentals/
 ├── .gitignore
+├── .vscode/
+│   └── settings.json
 ├── package.json
 ├── package-lock.json
 ├── playwright.config.ts
@@ -28,6 +30,7 @@ LearningPlaywrightFundamentals/
 ├── test-results/
 ├── node_modules/
 └── tests/
+    ├── applogin.spec.ts
     └── example.spec.ts
 ```
 
@@ -38,6 +41,7 @@ LearningPlaywrightFundamentals/
 | `.gitignore` | Tells Git which files/folders to exclude from version control |
 | `package.json` | Project metadata & npm dependencies manifest |
 | `package-lock.json` | Locks exact dependency versions for reproducible installs |
+| `.vscode/settings.json` | Project-level VS Code settings (enables Playwright test UI in spec files) |
 | `playwright.config.ts` | Central configuration for the Playwright test runner |
 | `playwright-report/` | Auto-generated HTML test reports from test runs |
 | `test-results/` | Auto-generated debugging artifacts (traces, screenshots) on test failure |
@@ -151,6 +155,35 @@ This file tells Git which files and folders to **ignore** — meaning they won't
 **Who uses it?** Git — it reads `.gitignore` before every `git add` / `git commit` operation.
 
 **Auto-generated?** Yes — by `npm init playwright@latest` (scaffolding phase).
+
+---
+
+#### `.vscode/settings.json`
+**Type:** Configuration file (JSON)
+
+This folder contains **project-level VS Code settings** that apply only to this workspace. It tells VS Code and the Playwright extension how to behave when working on this project.
+
+```json
+{
+  "playwright.reuseBrowser": true
+}
+```
+
+**What does it do?**
+- The `playwright.reuseBrowser` setting signals to the **Playwright VS Code extension** that this is a Playwright project, which enables the green **▶️ Run Test** and **🐞 Debug Test** buttons (code lenses) directly in your `.spec.ts` files.
+- Without this `.vscode` folder, the Playwright extension may not activate its test UI, and the run buttons won't appear.
+
+**Other common uses of `.vscode/`:**
+| File | Purpose |
+|------|---------|
+| `settings.json` | Override editor settings for this project (formatting, linting, test runner config) |
+| `extensions.json` | Recommend extensions to anyone opening the project (e.g., `ms-playwright.playwright`) |
+| `tasks.json` | Define build/run tasks (e.g., `npm run build`, `npx playwright test`) |
+| `launch.json` | Debug configurations (e.g., how to launch Playwright in debug mode) |
+
+**Should you commit it?** Yes — `.vscode/` settings are commonly committed to share consistent editor configuration across your team. Only workspace-specific settings go here (not user-specific ones like theme or font size).
+
+**Auto-generated?** No — created manually when you need project-specific VS Code configuration.
 
 ---
 
