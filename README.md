@@ -49,8 +49,53 @@ LearningPlaywrightFundamentals/
 | `test-results/` | Auto-generated debugging artifacts (traces, screenshots) on test failure |
 | `node_modules/` | Installed npm packages (auto-generated, do not edit) |
 | `tests/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
+| `tests/applogin.spec.ts` | Application login test cases |
 
 ---
+
+## Getting Started
+
+### Prerequisites
+- **Node.js** v18+ and **npm** v8+
+- A code editor (VS Code recommended)
+
+### Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Cheeras/LearningPlaywrightfundamentals.git
+   cd LearningPlaywrightfundamentals
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Install Playwright browsers:**
+   ```bash
+   npx playwright install
+   ```
+
+4. **Run tests:**
+   ```bash
+   npx playwright test
+   ```
+
+5. **View test report:**
+   ```bash
+   npx playwright show-report
+   ```
+
+---
+
+## VS Code Theme
+
+This project uses the **GitHub Dark Dimmed** theme — a soft, low-contrast theme designed for long coding sessions with reduced eye strain.
+
+---
+
+#### `package.json`
 
 #### `package.json`
 **Type:** Manifest file (JSON format)
