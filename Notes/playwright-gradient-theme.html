@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playwright vs Selenium Architecture - Deep Research Report</title>
+<style>
+:root{
+  --bg:#7b4556;
+  --panel:rgba(255,255,255,.78);
+  --panel2:rgba(255,255,255,.68);
+  --panel3:rgba(255,255,255,.88);
+  --border:rgba(78,48,63,.20);
+  --text:#211b23;
+  --muted:#4f4750;
+  --blue:#6a3150;
+  --cyan:#176f68;
+  --green:#236b58;
+  --orange:#9a4b43;
+  --purple:#6d3c70;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(241,244,115,.88) 0%, rgba(241,244,115,.45) 15%, transparent 34%),
+    radial-gradient(circle at 100% 40%, rgba(118,166,137,.70) 0%, rgba(118,166,137,.30) 28%, transparent 52%),
+    radial-gradient(circle at 48% 20%, rgba(245,192,181,.95) 0%, rgba(245,192,181,.55) 25%, transparent 48%),
+    radial-gradient(circle at 8% 6%, rgba(210,75,91,.90) 0%, rgba(210,75,91,.52) 32%, transparent 58%),
+    linear-gradient(135deg,#9a3849 0%,#c94d5d 20%,#edaaa1 47%,#dce6a0 73%,#5c7d72 100%);
+  color:var(--text);
+  line-height:1.7;
+  min-height:100vh;
+}
+a{color:var(--cyan);text-decoration:none}
+.hero{
+  max-width:1250px;margin:auto;padding:80px 30px 50px;
+  text-shadow:0 1px 0 rgba(255,255,255,.18);
+}
+.tag{
+  display:inline-block;padding:7px 16px;border:1px solid rgba(88,43,62,.22);
+  background:rgba(255,255,255,.45);color:#5b243d;border-radius:999px;
+  font-size:13px;font-weight:bold;letter-spacing:1px;margin-bottom:25px;
+  backdrop-filter:blur(10px);
+}
+h1{font-size:clamp(42px,6vw,76px);line-height:1.08;max-width:1050px;letter-spacing:-2px}
+.gradient{background:linear-gradient(90deg,#8b7cff,#d38cff,#45e0c4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{
+  margin-top:28px;max-width:950px;font-size:19px;color:#2f2830;
+  font-weight:500;
+}
+.quick{
+  margin-top:42px;padding:26px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(78,48,63,.18);
+  border-radius:16px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 12px 35px rgba(69,36,51,.12);
+}
+.quick h3{color:var(--cyan);margin-bottom:8px}
+.navwrap{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,250,248,.78);
+  backdrop-filter:blur(16px);
+  border-top:1px solid rgba(78,48,63,.12);
+  border-bottom:1px solid rgba(78,48,63,.16);
+}
+nav{max-width:1250px;margin:auto;padding:14px 25px;display:flex;gap:22px;overflow-x:auto;white-space:nowrap}
+nav a{color:#463b44;font-size:14px;font-weight:600}
+nav a:hover{color:var(--cyan)}
+.container{max-width:1250px;margin:auto;padding:55px 30px 90px}
+section{margin-bottom:88px;scroll-margin-top:70px}
+.label{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:2px;font-weight:bold;margin-bottom:10px}
+h2{font-size:clamp(30px,4vw,48px);line-height:1.15;margin-bottom:22px}
+h3{font-size:23px;margin-bottom:14px}
+p{color:#4b434c;margin-bottom:18px}
+strong{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:30px}
+.card{
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(78,48,63,.16);
+  border-radius:16px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(69,36,51,.13);
+  backdrop-filter:blur(10px);
+}
+.pw{border-top:4px solid var(--green)}
+.sel{border-top:4px solid var(--orange)}
+.arch{
+  margin-top:30px;padding:35px;
+  background:rgba(255,255,255,.70);
+  border:1px solid rgba(78,48,63,.16);
+  border-radius:18px;overflow-x:auto;
+  box-shadow:0 12px 35px rgba(69,36,51,.13);
+  backdrop-filter:blur(10px);
+}
+.flow{display:flex;flex-direction:column;align-items:center;min-width:650px}
+.node{
+  width:480px;text-align:center;padding:16px 20px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(78,48,63,.16);
+  border-radius:12px;font-weight:bold;color:#2a2028;
+}
+.node.pw{border-color:rgba(69,224,196,.72)}
+.node.sel{border-color:rgba(255,159,104,.72)}
+.arrow{font-size:28px;color:var(--cyan);margin:8px 0}
+.analogy{
+  margin-top:30px;padding:35px;background:rgba(255,255,255,.72);
+  border:1px solid rgba(78,48,63,.16);border-radius:18px;
+  box-shadow:0 12px 35px rgba(69,36,51,.11);
+  backdrop-filter:blur(10px);
+}
+.message{
+  padding:14px 18px;margin:12px 0;border-radius:10px;
+  background:rgba(255,255,255,.72);color:#403740;
+  border:1px solid rgba(78,48,63,.10);
+}
+.user{border-left:4px solid var(--orange)}
+.system{border-left:4px solid var(--green)}
+pre{
+  margin-top:20px;padding:24px;background:#211923;
+  border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  overflow-x:auto;color:#f7f1f4;
+  box-shadow:0 10px 24px rgba(45,20,35,.18);
+}
+table{width:100%;min-width:850px;border-collapse:collapse;background:rgba(255,255,255,.76)}
+.tablewrap{margin-top:30px;overflow-x:auto;border:1px solid var(--border);border-radius:16px}
+th{background:rgba(255,255,255,.92);color:#5b243d;padding:18px;text-align:left;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+td{padding:18px;color:#4b434c;border-top:1px solid var(--border);vertical-align:top}
+td:first-child{color:var(--text);font-weight:bold}
+.timeline{display:grid;gap:18px;margin-top:30px}
+.step{
+  display:grid;grid-template-columns:90px 1fr;gap:20px;padding:24px;
+  background:rgba(255,255,255,.74);
+  border:1px solid rgba(78,48,63,.16);border-radius:14px;
+  box-shadow:0 10px 26px rgba(69,36,51,.09);
+}
+.num{color:var(--cyan);font-size:30px;font-weight:bold}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.feature{
+  padding:22px;background:rgba(255,255,255,.74);
+  border:1px solid rgba(78,48,63,.16);border-radius:14px;
+  box-shadow:0 10px 26px rgba(69,36,51,.09);
+}
+.feature h4{color:var(--green);margin-bottom:8px}
+.feature p{font-size:14px;margin:0}
+.quote{
+  margin-top:25px;padding:20px;border-left:5px solid #176f68;
+  background:rgba(255,255,255,.62);font-size:19px;color:#29212a;
+  border-radius:0 12px 12px 0;
+}
+.verdict{
+  padding:45px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.62));
+  border:1px solid rgba(78,48,63,.16);
+  box-shadow:0 14px 38px rgba(69,36,51,.15);
+  backdrop-filter:blur(12px);
+}
+ul{padding-left:24px;color:#403740}
+li{margin:8px 0}
+footer{border-top:1px solid rgba(78,48,63,.18);padding:45px 30px;text-align:center;color:#3d343d;font-size:14px;background:rgba(255,255,255,.24)}
+@media(max-width:900px){.grid,.features{grid-template-columns:1fr}.step{grid-template-columns:1fr}.hero{padding-top:55px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="tag">DEEP RESEARCH REPORT • BROWSER AUTOMATION</div>
+  <h1>Understanding <span class="gradient">Playwright Architecture</span><br>Like a Layman — and How It Differs from Selenium</h1>
+  <p>Playwright and Selenium both automate browser actions, but their architecture, communication model, synchronization strategy, test isolation and developer experience are different. Understanding those differences explains why Playwright is increasingly popular for modern end-to-end testing.</p>
+  <div class="quick">
+    <h3>The simplest answer</h3>
+    <p><strong>Selenium:</strong> You use a standardized WebDriver ecosystem to send browser automation commands.<br><br>
+    <strong>Playwright:</strong> You use an integrated automation platform that combines browser control, auto-waiting, locators, isolation, network control, tracing and test execution.</p>
+  </div>
+</header>
+
+<div class="navwrap"><nav>
+<a href="#layman">Layman Analogy</a><a href="#playwright">Playwright Architecture</a><a href="#selenium">Selenium Architecture</a><a href="#locators">Locators</a><a href="#contexts">Browser Contexts</a><a href="#comparison">Comparison</a><a href="#popularity">Why Popular</a><a href="#bidi">WebDriver BiDi</a><a href="#verdict">Verdict</a>
+</nav></div>
+
+<main class="container">
+
+<section id="layman">
+<div class="label">01 • Start with a mental model</div>
+<h2>The Restaurant Analogy</h2>
+<p>Before discussing browser protocols and automation drivers, imagine that browser automation is like communicating with a restaurant.</p>
+<div class="grid">
+<article class="card sel"><h3>Selenium: Request → Response</h3>
+<p>You ask for one thing, wait for the result, and then ask for the next thing.</p>
+<div class="message user">You: “Find the Login button.”</div>
+<div class="message system">System: “The Login button was found.”</div>
+<div class="message user">You: “Now click it.”</div>
+<div class="message system">System: “Click completed.”</div>
+<p>This is a useful simplified model for understanding the traditional WebDriver command and response style.</p>
+</article>
+<article class="card pw"><h3>Playwright: Integrated Automation Assistant</h3>
+<p>You describe the target and the action. The automation layer coordinates the interaction.</p>
+<div class="message user">You: “Click the Login button.”</div>
+<div class="message system">Playwright checks whether the element is present, visible, stable, enabled and able to receive the interaction.</div>
+<div class="message system">When the required conditions are satisfied, the action is performed.</div>
+</article>
+</div>
+<div class="quote">Selenium is best understood as a standardized browser automation ecosystem. Playwright is best understood as an integrated browser automation and testing platform.</div>
+</section>
+
+<section id="playwright">
+<div class="label">02 • Architecture deep dive</div>
+<h2>How Playwright Architecture Works</h2>
+<p>A Playwright test does not directly manipulate the browser DOM from your TypeScript or JavaScript code. Your test expresses intent through Playwright APIs, which communicate with Playwright's automation core and browser-specific implementations.</p>
+<div class="arch"><div class="flow">
+<div class="node pw">Your Test Code<br><small>TypeScript / JavaScript / Java / Python / .NET</small></div><div class="arrow">↓</div>
+<div class="node pw">Playwright Test Runner<br><small>Discovers, schedules, executes and reports tests</small></div><div class="arrow">↓</div>
+<div class="node pw">Worker Process<br><small>Independent execution process supporting parallelism</small></div><div class="arrow">↓</div>
+<div class="node pw">Playwright Client API<br><small>Browser, Context, Page and Locator objects</small></div><div class="arrow">↓</div>
+<div class="node pw">Persistent Communication Layer<br><small>Commands, responses and browser events</small></div><div class="arrow">↓</div>
+<div class="node pw">Playwright Driver / Core<br><small>Auto-waiting • Locators • Actionability • Events • Network • Tracing</small></div><div class="arrow">↓</div>
+<div class="node pw">Browser Automation Protocol Layer</div><div class="arrow">↓</div>
+<div class="node pw">Chromium • Firefox • WebKit</div>
+</div></div>
+
+<div class="features">
+<div class="feature"><h4>Test Runner</h4><p>Manages discovery, projects, fixtures, retries, reporters and workers.</p></div>
+<div class="feature"><h4>Locator Engine</h4><p>Defines how a target is found when an operation is performed.</p></div>
+<div class="feature"><h4>Actionability</h4><p>Checks whether an element is ready for an action such as click or fill.</p></div>
+<div class="feature"><h4>Browser Context</h4><p>Provides isolated browser sessions similar to separate private profiles.</p></div>
+<div class="feature"><h4>Tracing</h4><p>Captures actions and debugging information for failure investigation.</p></div>
+<div class="feature"><h4>Network Control</h4><p>Supports observing, intercepting and mocking browser network traffic.</p></div>
+</div>
+</section>
+
+<section>
+<div class="label">03 • Command journey</div>
+<h2>What Happens When You Run a Click?</h2>
+<pre><code>await page.getByRole('button', { name: 'Login' }).click();</code></pre>
+<div class="timeline">
+<div class="step"><div class="num">01</div><div><h3>Your Test Expresses Intent</h3><p>The test identifies the target and requests an action rather than manually describing every synchronization step.</p></div></div>
+<div class="step"><div class="num">02</div><div><h3>The Locator Resolves the Target</h3><p>The locator identifies the relevant element against the current page state.</p></div></div>
+<div class="step"><div class="num">03</div><div><h3>Actionability Is Checked</h3><p>Playwright performs relevant checks such as visibility, stability, enabled state and event reception.</p></div></div>
+<div class="step"><div class="num">04</div><div><h3>The Browser Action Executes</h3><p>The automation layer communicates with the browser implementation and performs the requested interaction.</p></div></div>
+<div class="step"><div class="num">05</div><div><h3>The Async Result Returns</h3><p>The promise resolves when the action has completed according to Playwright's action semantics.</p></div></div>
+</div>
+</section>
+
+<section id="selenium">
+<div class="label">04 • Selenium architecture</div>
+<h2>How Selenium WebDriver Architecture Works</h2>
+<p>Selenium WebDriver is built around a standardized browser automation model. Test code uses a language-specific Selenium client library, which communicates using WebDriver commands with browser automation implementations.</p>
+<div class="arch"><div class="flow">
+<div class="node sel">Your Test Code<br><small>Java / Python / C# / JavaScript / Ruby</small></div><div class="arrow">↓</div>
+<div class="node sel">Selenium Client Library</div><div class="arrow">↓</div>
+<div class="node sel">W3C WebDriver Commands</div><div class="arrow">↓</div>
+<div class="node sel">Browser Automation Implementation</div><div class="arrow">↓</div>
+<div class="node sel">Browser</div><div class="arrow">↓</div>
+<div class="node sel">Web Application / DOM</div>
+</div></div>
+<div class="analogy">
+<h3 style="color:var(--purple)">The Translator Analogy</h3>
+<p>Your test may speak Java, Python or C#. Browsers have their own automation implementations. Selenium provides a common WebDriver abstraction so the test code can control supported browsers through a standardized model.</p>
+<pre><code>Java Test
+    ↓
+Selenium Java Client
+    ↓
+W3C WebDriver Command
+    ↓
+Browser Automation Implementation
+    ↓
+Browser</code></pre>
+</div>
+</section>
+
+<section id="locators">
+<div class="label">05 • Element interaction model</div>
+<h2>WebElement vs Playwright Locator</h2>
+<div class="grid">
+<article class="card sel">
+<h3>Selenium WebElement</h3>
+<pre><code>WebElement loginButton =
+    driver.findElement(By.id("login"));
+
+loginButton.click();</code></pre>
+<p>A WebElement is an element reference obtained from the browser. If a modern application re-renders and replaces that DOM element, the old reference can become stale.</p>
+</article>
+<article class="card pw">
+<h3>Playwright Locator</h3>
+<pre><code>const loginButton =
+    page.getByRole('button', { name: 'Login' });
+
+await loginButton.click();</code></pre>
+<p>A Locator is better understood as a reusable instruction for finding the target when Playwright performs an operation.</p>
+</article>
+</div>
+<div class="quote">A WebElement can be compared to storing someone's current phone number. A Locator is more like saying: “Find this person using their unique entry in the company directory.”</div>
+</section>
+
+<section id="contexts">
+<div class="label">06 • Test isolation</div>
+<h2>Browser Contexts: One of Playwright's Most Useful Concepts</h2>
+<p>A BrowserContext is an isolated browser environment. Each context can maintain separate cookies, storage and authentication state.</p>
+<div class="arch"><div class="flow">
+<div class="node pw">One Browser Process</div><div class="arrow">↓</div>
+<div class="node pw">Context A • Context B • Context C<br><small>Separate sessions and isolated browser state</small></div><div class="arrow">↓</div>
+<div class="node">Pages / Tabs inside each Context</div>
+</div></div>
+<div class="grid">
+<article class="card sel"><h3>Without Isolation</h3><p>Tests may accidentally share cookies, sessions, local storage and application state, creating cross-test contamination.</p></article>
+<article class="card pw"><h3>With Context Isolation</h3><p>Independent contexts make clean test state and parallel execution easier to design.</p></article>
+</div>
+</section>
+
+<section id="comparison">
+<div class="label">07 • Side-by-side comparison</div>
+<h2>Playwright vs Selenium Architecture</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Area</th><th>Playwright</th><th>Selenium</th></tr></thead>
+<tbody>
+<tr><td>Core philosophy</td><td>Integrated automation and testing platform.</td><td>Standardized browser automation ecosystem.</td></tr>
+<tr><td>Communication model</td><td>Persistent internal communication and event-oriented architecture.</td><td>Traditional WebDriver command model, increasingly extended with BiDi.</td></tr>
+<tr><td>Element model</td><td>Locator-first model with re-resolution.</td><td>WebElement references.</td></tr>
+<tr><td>Auto-waiting</td><td>Built into actionability behavior for many interactions.</td><td>Explicit and framework-level synchronization is commonly required.</td></tr>
+<tr><td>Test isolation</td><td>BrowserContext is a first-class concept.</td><td>Usually handled through browser sessions, profiles and framework design.</td></tr>
+<tr><td>Parallel execution</td><td>Integrated worker-based execution.</td><td>Depends on framework and infrastructure such as Grid.</td></tr>
+<tr><td>Test runner</td><td>Playwright Test is integrated.</td><td>Typically uses JUnit, TestNG, pytest or other frameworks.</td></tr>
+<tr><td>Tracing</td><td>Integrated Trace Viewer support.</td><td>Often achieved with ecosystem tools and reporting integrations.</td></tr>
+<tr><td>Network mocking</td><td>Integrated routing and interception APIs.</td><td>Available through different approaches and evolving BiDi capabilities.</td></tr>
+<tr><td>Language ecosystem</td><td>JavaScript, TypeScript, Python, Java and .NET.</td><td>Very broad multi-language ecosystem.</td></tr>
+<tr><td>Enterprise maturity</td><td>Rapidly growing.</td><td>Extremely mature and deeply adopted.</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section id="popularity">
+<div class="label">08 • Adoption analysis</div>
+<h2>Why Is Playwright So Popular Today?</h2>
+<div class="features">
+<div class="feature"><h4>1. Modern Web Apps</h4><p>SPAs frequently re-render, load asynchronously and update the DOM dynamically. Playwright's locator and waiting model fits this environment well.</p></div>
+<div class="feature"><h4>2. Less Boilerplate</h4><p>Common element readiness behavior is integrated, reducing repetitive wait code for many interactions.</p></div>
+<div class="feature"><h4>3. TypeScript Experience</h4><p>Playwright is especially attractive to teams already using Node.js, npm, JavaScript and TypeScript.</p></div>
+<div class="feature"><h4>4. Integrated Tooling</h4><p>Test runner, assertions, tracing, screenshots, video and network APIs are part of one ecosystem.</p></div>
+<div class="feature"><h4>5. Debugging</h4><p>Trace-based debugging makes it easier to investigate what happened during a failed test.</p></div>
+<div class="feature"><h4>6. Test Isolation</h4><p>Browser contexts provide a practical model for clean and parallel test execution.</p></div>
+</div>
+<p style="margin-top:30px"><strong>Important:</strong> Popularity does not mean Selenium is obsolete. Selenium remains one of the most important enterprise browser automation ecosystems.</p>
+</section>
+
+<section id="bidi">
+<div class="label">09 • Modern Selenium evolution</div>
+<h2>WebDriver BiDi Changes the Comparison</h2>
+<p>Older comparisons often reduce the discussion to “Selenium is request-response and Playwright is bidirectional.” That is no longer sufficient. WebDriver BiDi introduces a modern bidirectional browser automation protocol with event streaming capabilities.</p>
+<div class="grid">
+<article class="card sel"><h3>Classic Comparison</h3><p>Selenium comparisons historically focused on WebDriver commands and browser-driver communication.</p></article>
+<article class="card pw"><h3>Modern Comparison</h3><p>The more accurate comparison today is increasingly: modern WebDriver + BiDi ecosystem versus Playwright's integrated browser automation platform.</p></article>
+</div>
+<div class="quote">The competition is no longer simply “old Selenium versus modern Playwright.” Both ecosystems continue to evolve, but they optimize for different architectural philosophies and developer experiences.</div>
+</section>
+
+<section>
+<div class="label">10 • Choosing the right tool</div>
+<h2>When Should You Choose Each?</h2>
+<div class="grid">
+<article class="card pw">
+<h3>Playwright Is Strong When</h3>
+<ul>
+<li>You are starting a new web automation framework.</li>
+<li>Your team uses TypeScript or JavaScript.</li>
+<li>You test modern SPA applications.</li>
+<li>You need network mocking and interception.</li>
+<li>You value tracing and integrated debugging.</li>
+<li>You want built-in parallel execution and browser contexts.</li>
+<li>You need Chromium, Firefox and WebKit coverage.</li>
+</ul>
+</article>
+<article class="card sel">
+<h3>Selenium Is Strong When</h3>
+<ul>
+<li>You already have a mature Selenium framework.</li>
+<li>Your organization has deep Java Selenium expertise.</li>
+<li>Your ecosystem relies heavily on WebDriver standards.</li>
+<li>You require broad language and enterprise compatibility.</li>
+<li>You already operate Selenium Grid infrastructure.</li>
+<li>A migration would cost more than the expected benefits.</li>
+</ul>
+</article>
+</div>
+</section>
+
+<section id="verdict">
+<div class="label">11 • Final conclusion</div>
+<div class="verdict">
+<h2>Final Verdict</h2>
+<p>Playwright is increasingly popular because it provides a highly integrated architecture for modern browser testing. Its locator model, actionability checks, browser contexts, tracing, network control and worker-based execution create a strong out-of-the-box developer experience.</p>
+<p>Selenium remains highly relevant because of its W3C WebDriver foundation, enormous enterprise ecosystem, broad language support and continued evolution through WebDriver BiDi.</p>
+<div class="quote"><strong>Selenium:</strong> “I control the browser through a standardized WebDriver ecosystem.”<br><br><strong>Playwright:</strong> “I use an integrated automation platform that coordinates browser state, locators, waiting, events, isolation and debugging.”</div>
+<p style="margin-top:25px">For a QA Automation Engineer, the strongest strategy is not to think of Selenium as “old” and Playwright as “new.” Instead, learn the architectural strengths of both. Selenium provides foundational browser automation knowledge; Playwright adds a modern integrated model that is highly effective for current web applications.</p>
+</div>
+</section>
+
+<section>
+<div class="label">Research references</div>
+<h2>Recommended Reading</h2>
+<ul>
+<li><a href="https://playwright.dev/docs/intro">Official Playwright Documentation</a></li>
+<li><a href="https://playwright.dev/docs/actionability">Playwright Actionability and Auto-waiting</a></li>
+<li><a href="https://playwright.dev/docs/browser-contexts">Playwright Browser Contexts</a></li>
+<li><a href="https://playwright.dev/docs/trace-viewer">Playwright Trace Viewer</a></li>
+<li><a href="https://playwright.dev/docs/test-parallel">Playwright Parallelism and Workers</a></li>
+<li><a href="https://www.selenium.dev/documentation/webdriver/">Official Selenium WebDriver Documentation</a></li>
+<li><a href="https://www.selenium.dev/documentation/webdriver/bidi/w3c/">Selenium WebDriver BiDi Documentation</a></li>
+<li><a href="https://app.thetestingacademy.com/playwright/playwright-e2e-architecture-blueprint">The Testing Academy — Playwright E2E Architecture Blueprint</a></li>
+<li><a href="https://app.thetestingacademy.com/playwright/learn/playwright-fundamentals/overview">The Testing Academy — Playwright Fundamentals Overview</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+Playwright vs Selenium Architecture • Deep Research HTML Report
+</footer>
+
+</body>
+</html>
