@@ -37,6 +37,7 @@ LearningPlaywrightFundamentals/
 └── tests/
     ├── 01_Basics/
     │   ├── 01_TA.spec.ts
+    │   ├── 02_multiple_context.spec.ts
     │   ├── 02_Test_Options.spec.ts
     │   ├── applogin.spec.ts
     │   └── example.spec.ts
@@ -60,6 +61,7 @@ LearningPlaywrightFundamentals/
 | `tests/01_Basics/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
 | `tests/01_Basics/applogin.spec.ts` | Application login test cases |
 | `tests/01_Basics/01_TA.spec.ts` | Test Automation — navigation & multi-browser context tests |
+| `tests/01_Basics/02_multiple_context.spec.ts` | Multi-user browser context test (Admin & Viewer) |
 | `tests/01_Basics/02_Test_Options.spec.ts` | Test options and configuration examples |
 | `tests/02_TestAnnotations/` | Directory for test annotation examples |
 | `Notes/` | Personal notes, links, and theme files |
