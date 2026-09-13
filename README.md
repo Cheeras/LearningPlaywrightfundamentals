@@ -30,9 +30,18 @@ LearningPlaywrightFundamentals/
 ├── playwright-report/
 ├── test-results/
 ├── node_modules/
+├── Notes/
+│   ├── classnote.md
+│   ├── importentlink.md
+│   └── playwright-gradient-theme.html
 └── tests/
-    ├── applogin.spec.ts
-    └── example.spec.ts
+    ├── 01_Basics/
+    │   ├── 01_TA.spec.ts
+    │   ├── 02_Test_Options.spec.ts
+    │   ├── applogin.spec.ts
+    │   └── example.spec.ts
+    └── 02_TestAnnotations/
+        └── .gitkeep
 ```
 
 ### File & Folder Details
@@ -48,8 +57,12 @@ LearningPlaywrightFundamentals/
 | `playwright-report/` | Auto-generated HTML test reports from test runs |
 | `test-results/` | Auto-generated debugging artifacts (traces, screenshots) on test failure |
 | `node_modules/` | Installed npm packages (auto-generated, do not edit) |
-| `tests/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
-| `tests/applogin.spec.ts` | Application login test cases |
+| `tests/01_Basics/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
+| `tests/01_Basics/applogin.spec.ts` | Application login test cases |
+| `tests/01_Basics/01_TA.spec.ts` | Test Automation — navigation & multi-browser context tests |
+| `tests/01_Basics/02_Test_Options.spec.ts` | Test options and configuration examples |
+| `tests/02_TestAnnotations/` | Directory for test annotation examples |
+| `Notes/` | Personal notes, links, and theme files |
 
 ---
 
