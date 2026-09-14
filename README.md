@@ -49,8 +49,11 @@ LearningPlaywrightFundamentals/
     │   ├── 06_Test_Options.spec.ts
     │   ├── applogin.spec.ts
     │   └── example.spec.ts
-    └── 02_TestAnnotations/
-        └── .gitkeep
+    ├── 02_TestAnnotations/
+    │   ├── 07_TestAnnotations.spec.ts
+    │   └── 08_TestDescribe.spec.ts
+    └── 03_Locator_Commands/
+        └── 09_LC.spec.ts
 ```
 
 ### File & Folder Details
@@ -76,7 +79,9 @@ LearningPlaywrightFundamentals/
 | `tests/01_Basics/04_tta_check.spec.ts` | Login test on The Testing Academy app |
 | `tests/01_Basics/05_BCP.spec.ts` | Standalone script — Browser Context Per role (BCP) pattern |
 | `tests/01_Basics/06_Test_Options.spec.ts` | Context options (viewport, locale, geolocation) & mobile emulation |
-| `tests/02_TestAnnotations/` | Directory for test annotation examples |
+| `tests/02_TestAnnotations/07_TestAnnotations.spec.ts` | Test annotation examples (skip, fixme, only, slow) |
+| `tests/02_TestAnnotations/08_TestDescribe.spec.ts` | Test grouping with `test.describe` blocks |
+| `tests/03_Locator_Commands/09_LC.spec.ts` | Locator commands and element interaction examples |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
 | `Notes/` | Personal notes, links, and theme files |
