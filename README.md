@@ -34,11 +34,19 @@ LearningPlaywrightFundamentals/
 │   ├── classnote.md
 │   ├── importentlink.md
 │   └── playwright-gradient-theme.html
+├── playwritelinkedinarticles/
+│   ├── differencetsvsspects.md
+│   └── playwright-multi-browser-testing.md
 └── tests/
     ├── 01_Basics/
     │   ├── 01_TA.spec.ts
     │   ├── 02_multiple_context.spec.ts
+    │   ├── 02_multiple_context.ts
     │   ├── 02_Test_Options.spec.ts
+    │   ├── 03_normal_pw.ts
+    │   ├── 04_tta_check.spec.ts
+    │   ├── 05_BCP.spec.ts
+    │   ├── 06_Test_Options.spec.ts
     │   ├── applogin.spec.ts
     │   └── example.spec.ts
     └── 02_TestAnnotations/
@@ -60,10 +68,17 @@ LearningPlaywrightFundamentals/
 | `node_modules/` | Installed npm packages (auto-generated, do not edit) |
 | `tests/01_Basics/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
 | `tests/01_Basics/applogin.spec.ts` | Application login test cases |
-| `tests/01_Basics/01_TA.spec.ts` | Test Automation — navigation & multi-browser context tests |
+| `tests/01_Basics/01_TA.spec.ts` | Navigation & multi-user browser context (BCP) tests |
 | `tests/01_Basics/02_multiple_context.spec.ts` | Multi-user browser context test (Admin & Viewer) |
+| `tests/01_Basics/02_multiple_context.ts` | Standalone script — multi-context example (runs via `npx tsx`) |
 | `tests/01_Basics/02_Test_Options.spec.ts` | Test options and configuration examples |
+| `tests/01_Basics/03_normal_pw.ts` | Standalone script — basic Playwright launch (runs via `npx tsx`) |
+| `tests/01_Basics/04_tta_check.spec.ts` | Login test on The Testing Academy app |
+| `tests/01_Basics/05_BCP.spec.ts` | Standalone script — Browser Context Per role (BCP) pattern |
+| `tests/01_Basics/06_Test_Options.spec.ts` | Context options (viewport, locale, geolocation) & mobile emulation |
 | `tests/02_TestAnnotations/` | Directory for test annotation examples |
+| `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
+| `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
 | `Notes/` | Personal notes, links, and theme files |
 
 ---
