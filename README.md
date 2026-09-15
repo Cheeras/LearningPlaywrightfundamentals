@@ -31,6 +31,7 @@ LearningPlaywrightFundamentals/
 ├── test-results/
 ├── node_modules/
 ├── Notes/
+│   ├── LiveClassNotes.md
 │   ├── classnote.md
 │   ├── importentlink.md
 │   └── playwright-gradient-theme.html
@@ -84,7 +85,10 @@ LearningPlaywrightFundamentals/
 | `tests/03_Locator_Commands/09_LC.spec.ts` | Locator commands and element interaction examples |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
-| `Notes/` | Personal notes, links, and theme files |
+| `Notes/LiveClassNotes.md` | Live class notes covering Playwright fundamentals, features, and architecture |
+| `Notes/classnote.md` | Personal class notes |
+| `Notes/importentlink.md` | Collection of important reference links |
+| `Notes/playwright-gradient-theme.html` | Custom VS Code gradient theme HTML file |
 
 ---
 
