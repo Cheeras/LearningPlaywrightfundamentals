@@ -36,6 +36,7 @@ LearningPlaywrightFundamentals/
 │   ├── importentlink.md
 │   └── playwright-gradient-theme.html
 ├── playwritelinkedinarticles/
+│   ├── browservscontextvspage.md
 │   ├── differencetsvsspects.md
 │   └── playwright-multi-browser-testing.md
 └── tests/
@@ -54,7 +55,8 @@ LearningPlaywrightFundamentals/
     │   ├── 07_TestAnnotations.spec.ts
     │   └── 08_TestDescribe.spec.ts
     └── 03_Locator_Commands/
-        └── 09_LC.spec.ts
+        ├── 09_LC.spec.ts
+        └── 10_WingityProject.spec.ts
 ```
 
 ### File & Folder Details
@@ -83,6 +85,8 @@ LearningPlaywrightFundamentals/
 | `tests/02_TestAnnotations/07_TestAnnotations.spec.ts` | Test annotation examples (skip, fixme, only, slow) |
 | `tests/02_TestAnnotations/08_TestDescribe.spec.ts` | Test grouping with `test.describe` blocks |
 | `tests/03_Locator_Commands/09_LC.spec.ts` | Locator commands and element interaction examples |
+| `tests/03_Locator_Commands/10_WingityProject.spec.ts` | Wingify free-trial validation flow using locators and error assertions |
+| `playwritelinkedinarticles/browservscontextvspage.md` | Article explaining Browser vs Browser Context vs Page in beginner and deep-dive terms |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
 | `Notes/LiveClassNotes.md` | Live class notes covering Playwright fundamentals, features, and architecture |
