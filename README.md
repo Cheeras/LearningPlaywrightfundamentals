@@ -20,6 +20,7 @@ A Playwright end-to-end testing project for learning browser automation fundamen
 
 ```
 LearningPlaywrightFundamentals/
+├── AGENTS.md
 ├── .env.example
 ├── .gitignore
 ├── .vscode/
