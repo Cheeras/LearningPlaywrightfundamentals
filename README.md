@@ -64,7 +64,26 @@ LearningPlaywrightFundamentals/
     │   ├── Task15Sept/
     │   └── Task17Sept/
     │       └── 13_loginvalidation.spec.ts
-    └── 04_Session_Storage/
+    ├── 04_Session_Storage/
+    ├── 05_Allure_Reporting/
+    ├── 06_Multiple_Element_Filter/
+    ├── 07_Webtables/
+    ├── 08_Web_Select_Frames_Iframes/
+    ├── 09_Frames_Iframes/
+    ├── 10_Keyboard_hover_Drap_Drap_Calender/
+    ├── 11_JS_Alerts/
+    ├── 12_Hanble_SVG/
+    ├── 13_Shadow_DOM/
+    ├── 14_FIle_Upload/
+    ├── 15_FIle_Download/
+    ├── 16_Scroll_ToElement/
+    ├── 17_Expect_Assertions/
+    ├── 18_Test_Hooks/
+    ├── 19_Data_Driven_Testing/
+    ├── 20_PageObjectModel/
+    ├── 21_Fixtures/
+    ├── 22_Misc_AI_Concepts/
+    └── 23_Advanced_PW_Framework/
 ```
 
 ### File & Folder Details
