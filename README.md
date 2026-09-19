@@ -34,7 +34,8 @@ LearningPlaywrightFundamentals/
 │   ├── LiveClassNotes.md
 │   ├── classnote.md
 │   ├── importentlink.md
-│   └── playwright-gradient-theme.html
+│   ├── playwright-gradient-theme.html
+│   └── playwrightterminalcommand.md
 ├── playwritelinkedinarticles/
 │   ├── browservscontextvspage.md
 │   ├── differencetsvsspects.md
@@ -56,7 +57,10 @@ LearningPlaywrightFundamentals/
     │   └── 08_TestDescribe.spec.ts
     └── 03_Locator_Commands/
         ├── 09_LC.spec.ts
-        └── 10_WingityProject.spec.ts
+        ├── 10_WingityProject.spec.ts
+        ├── Task15Sept/
+        └── Task17Sept/
+            └── loginvalidation.spec.ts
 ```
 
 ### File & Folder Details
