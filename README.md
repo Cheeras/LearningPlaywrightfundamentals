@@ -44,23 +44,27 @@ LearningPlaywrightFundamentals/
     ├── 01_Basics/
     │   ├── 01_TA.spec.ts
     │   ├── 02_multiple_context.spec.ts
-    │   ├── 02_multiple_context.ts
-    │   ├── 02_Test_Options.spec.ts
-    │   ├── 03_normal_pw.ts
-    │   ├── 04_tta_check.spec.ts
+    │   ├── 03_multiple_context.ts
+    │   ├── 04_Test_Options.spec.ts
     │   ├── 05_BCP.spec.ts
     │   ├── 06_Test_Options.spec.ts
-    │   ├── applogin.spec.ts
-    │   └── example.spec.ts
+    │   ├── 07_normal_pw.ts
+    │   ├── 08_tta_check.spec.ts
+    │   ├── 09_applogin.spec.ts
+    │   └── 10_example.spec.ts
     ├── 02_TestAnnotations/
-    │   ├── 07_TestAnnotations.spec.ts
-    │   └── 08_TestDescribe.spec.ts
-    └── 03_Locator_Commands/
-        ├── 09_LC.spec.ts
-        ├── 10_WingityProject.spec.ts
-        ├── Task15Sept/
-        └── Task17Sept/
-            └── loginvalidation.spec.ts
+    │   ├── 11_TestAnnotations.spec.ts
+    │   └── 12_TestDescribe.spec.ts
+    ├── 03_Locator_Commands/
+    │   ├── 14_LC.spec.ts
+    │   ├── 15_WingityProject.spec.ts
+    │   ├── 16_Project3.spec.ts
+    │   ├── 17_Fresh.spec.ts
+    │   ├── 18_Refer.spec.ts
+    │   ├── Task15Sept/
+    │   └── Task17Sept/
+    │       └── 13_loginvalidation.spec.ts
+    └── 04_Session_Storage/
 ```
 
 ### File & Folder Details
