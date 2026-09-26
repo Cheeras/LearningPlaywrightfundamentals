@@ -62,6 +62,8 @@ LearningPlaywrightFundamentals/
     │   ├── 16_Project3.spec.ts
     │   ├── 17_Fresh.spec.ts
     │   ├── 18_Refer.spec.ts
+    │   ├── 19_getByRole.spec.ts
+    │   ├── 20_getByRole.spec.ts
     │   ├── Task15Sept/
     │   └── Task17Sept/
     │       └── 13_loginvalidation.spec.ts
@@ -118,6 +120,8 @@ LearningPlaywrightFundamentals/
 | `tests/03_Locator_Commands/10_WingityProject.spec.ts` | Wingify free-trial validation flow using locators and error assertions |
 | `tests/04_Session_Storage/19_SessionStorage.spec.ts` | Session storage save/load using raw Playwright API (`chromium.launch`) |
 | `tests/04_Session_Storage/20_TestWingify.spec.ts` | Wingify dashboard access using saved session storage (no login needed) |
+| `tests/03_Locator_Commands/19_getByRole.spec.ts` | Wingify login form using `getByRole` locators (Email/Password textboxes) |
+| `tests/03_Locator_Commands/20_getByRole.spec.ts` | Katalon CURA appointment booking using `getByRole` link locator |
 | `playwritelinkedinarticles/browservscontextvspage.md` | Article explaining Browser vs Browser Context vs Page in beginner and deep-dive terms |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
