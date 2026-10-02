@@ -1,4 +1,13 @@
 import { test, expect } from '@playwright/test'
+/**
+ *
+ * what is the return type of the goto command it is promise which returns either Response object
+ * or null if the navigation fails or is aborted. The Response object represents the response
+ * to a request made by the page. It contains information about the response,
+ * such as the status code, headers, and body.
+ *
+ *
+ */
 
 test("Verify X", async ({ page }) => {
 

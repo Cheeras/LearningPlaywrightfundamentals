@@ -21,6 +21,7 @@ A Playwright end-to-end testing project for learning browser automation fundamen
 ```
 LearningPlaywrightFundamentals/
 ├── AGENTS.md
+├── 000_runplaywrighttest.md
 ├── .env.example
 ├── .gitignore
 ├── .vscode/
@@ -64,6 +65,8 @@ LearningPlaywrightFundamentals/
     │   ├── 18_Refer.spec.ts
     │   ├── 19_getByRole.spec.ts
     │   ├── 20_getByRole.spec.ts
+    │   ├── 21_waitoptions.spec.ts
+    │   ├── Locators/
     │   ├── Task15Sept/
     │   └── Task17Sept/
     │       └── 13_loginvalidation.spec.ts
@@ -165,6 +168,30 @@ LearningPlaywrightFundamentals/
    ```bash
    npx playwright show-report
    ```
+
+---
+
+## Run Tests in the Terminal
+
+Run a specific test file in Chromium and display a readable list of results:
+
+```powershell
+npx playwright test tests/03_Locator_Commands/21_waitoptions.spec.ts --project=chromium --reporter=list
+```
+
+Run the full suite with terminal output:
+
+```powershell
+npx playwright test --reporter=list
+```
+
+The browser is visible by default in this project. To generate and open the configured HTML report, run `npx playwright test` and then `npx playwright show-report`.
+
+## The `page` Test Fixture
+
+In a test such as `async ({ page }) => { ... }`, `page` is a built-in Playwright Test fixture. The test runner creates an isolated browser context and a page (tab), then provides the `page` object to the test callback. It is a Playwright `Page` API for actions such as `page.goto()`, locating elements, and interacting with the page; it is not the page's HTML itself.
+
+The braces use JavaScript object destructuring. You can give the fixture a different local name with an alias, for example `async ({ page: browserTab }) => { ... }`, then use `browserTab` in the test. The fixture property remains named `page`.
 
 ---
 
