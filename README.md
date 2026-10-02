@@ -68,6 +68,7 @@ LearningPlaywrightFundamentals/
     │   ├── 21_waitoptions.spec.ts
     │   ├── Locators/
     │   ├── Task15Sept/
+    │   │   └── loginToCure.spec.ts
     │   └── Task17Sept/
     │       └── 13_loginvalidation.spec.ts
     ├── 04_Session_Storage/
@@ -125,6 +126,7 @@ LearningPlaywrightFundamentals/
 | `tests/04_Session_Storage/20_TestWingify.spec.ts` | Wingify dashboard access using saved session storage (no login needed) |
 | `tests/03_Locator_Commands/19_getByRole.spec.ts` | Wingify login form using `getByRole` locators (Email/Password textboxes) |
 | `tests/03_Locator_Commands/20_getByRole.spec.ts` | Katalon CURA appointment booking using `getByRole` link locator |
+| `tests/03_Locator_Commands/Task15Sept/loginToCure.spec.ts` | CURA login flow and current-URL verification |
 | `playwritelinkedinarticles/browservscontextvspage.md` | Article explaining Browser vs Browser Context vs Page in beginner and deep-dive terms |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
@@ -192,6 +194,23 @@ The browser is visible by default in this project. To generate and open the conf
 In a test such as `async ({ page }) => { ... }`, `page` is a built-in Playwright Test fixture. The test runner creates an isolated browser context and a page (tab), then provides the `page` object to the test callback. It is a Playwright `Page` API for actions such as `page.goto()`, locating elements, and interacting with the page; it is not the page's HTML itself.
 
 The braces use JavaScript object destructuring. You can give the fixture a different local name with an alias, for example `async ({ page: browserTab }) => { ... }`, then use `browserTab` in the test. The fixture property remains named `page`.
+
+### Get or Assert the Current URL
+
+Use `page.url()` to read the current URL as a string:
+
+```ts
+const currentUrl = page.url();
+console.log(currentUrl);
+```
+
+To verify that navigation reaches a URL, prefer Playwright's auto-waiting assertion:
+
+```ts
+await expect(page).toHaveURL('https://katalon-demo-cura.herokuapp.com/#appointment');
+```
+
+`page.url()` returns the URL immediately, while `await expect(page).toHaveURL(...)` waits for the page to reach the expected URL before passing or timing out.
 
 ---
 
