@@ -42,6 +42,9 @@ LearningPlaywrightFundamentals/
 │   ├── browservscontextvspage.md
 │   ├── differencetsvsspects.md
 │   └── playwright-multi-browser-testing.md
+├── PlaywrightMCPandCLI/
+│   ├── MCPUnderstanding.png
+│   └── notes.md
 └── tests/
     ├── 01_Basics/
     │   ├── 01_TA.spec.ts
@@ -70,7 +73,8 @@ LearningPlaywrightFundamentals/
     │   ├── Task15Sept/
     │   │   └── loginToCure.spec.ts
     │   └── Task17Sept/
-    │       └── 13_loginvalidation.spec.ts
+        │       ├── 13_loginvalidation.spec.ts
+        │       └── applogin.spec.ts
     ├── 04_Session_Storage/
     │   ├── 19_SessionStorage.spec.ts
     │   └── 20_TestWingify.spec.ts
@@ -82,6 +86,7 @@ LearningPlaywrightFundamentals/
     ├── 10_Keyboard_hover_Drap_Drap_Calender/
     ├── 11_JS_Alerts/
     ├── 12_Hanble_SVG/
+    │   └── hadlingsvg.spec.ts
     ├── 13_Shadow_DOM/
     ├── 14_FIle_Upload/
     ├── 15_FIle_Download/
@@ -127,6 +132,10 @@ LearningPlaywrightFundamentals/
 | `tests/03_Locator_Commands/19_getByRole.spec.ts` | Wingify login form using `getByRole` locators (Email/Password textboxes) |
 | `tests/03_Locator_Commands/20_getByRole.spec.ts` | Katalon CURA appointment booking using `getByRole` link locator |
 | `tests/03_Locator_Commands/Task15Sept/loginToCure.spec.ts` | CURA login flow and current-URL verification |
+| `tests/03_Locator_Commands/Task17Sept/applogin.spec.ts` | App login validation with invalid credentials |
+| `tests/12_Hanble_SVG/hadlingsvg.spec.ts` | SVG element visibility verification |
+| `PlaywrightMCPandCLI/notes.md` | Notes on LLM, AI Agents, and MCP architecture |
+| `PlaywrightMCPandCLI/MCPUnderstanding.png` | MCP architecture diagram |
 | `playwritelinkedinarticles/browservscontextvspage.md` | Article explaining Browser vs Browser Context vs Page in beginner and deep-dive terms |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |
