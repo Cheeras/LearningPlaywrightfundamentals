@@ -72,9 +72,11 @@ LearningPlaywrightFundamentals/
     │   ├── Locators/
     │   ├── Task15Sept/
     │   │   └── loginToCure.spec.ts
-    │   └── Task17Sept/
-        │       ├── 13_loginvalidation.spec.ts
-        │       └── applogin.spec.ts
+    │   ├── Task-1stOct/
+        │   │   └── appitlogin.spec.ts
+        │   └── Task17Sept/
+            │       ├── 13_loginvalidation.spec.ts
+            │       └── applogin.spec.ts
     ├── 04_Session_Storage/
     │   ├── 19_SessionStorage.spec.ts
     │   └── 20_TestWingify.spec.ts
@@ -132,7 +134,7 @@ LearningPlaywrightFundamentals/
 | `tests/03_Locator_Commands/19_getByRole.spec.ts` | Wingify login form using `getByRole` locators (Email/Password textboxes) |
 | `tests/03_Locator_Commands/20_getByRole.spec.ts` | Katalon CURA appointment booking using `getByRole` link locator |
 | `tests/03_Locator_Commands/Task15Sept/loginToCure.spec.ts` | CURA login flow and current-URL verification |
-| `tests/03_Locator_Commands/Task17Sept/applogin.spec.ts` | App login validation with invalid credentials |
+| `tests/03_Locator_Commands/Task-1stOct/appitlogin.spec.ts` | Applitools login test — sums table amounts with XPath locator |
 | `tests/12_Hanble_SVG/hadlingsvg.spec.ts` | SVG element visibility verification |
 | `PlaywrightMCPandCLI/notes.md` | Notes on LLM, AI Agents, and MCP architecture |
 | `PlaywrightMCPandCLI/MCPUnderstanding.png` | MCP architecture diagram |
