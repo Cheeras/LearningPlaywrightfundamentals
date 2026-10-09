@@ -44,6 +44,8 @@ LearningPlaywrightFundamentals/
 │   └── playwright-multi-browser-testing.md
 ├── PlaywrightMCPandCLI/
 │   ├── MCPUnderstanding.png
+│   ├── MCP Architecutre.png
+│   ├── MCP ecosystem.png
 │   └── notes.md
 └── tests/
     ├── 01_Basics/
@@ -138,6 +140,8 @@ LearningPlaywrightFundamentals/
 | `tests/12_Hanble_SVG/hadlingsvg.spec.ts` | SVG element visibility verification |
 | `PlaywrightMCPandCLI/notes.md` | Notes on LLM, AI Agents, and MCP architecture |
 | `PlaywrightMCPandCLI/MCPUnderstanding.png` | MCP architecture diagram |
+| `PlaywrightMCPandCLI/MCP Architecutre.png` | MCP architecture diagram |
+| `PlaywrightMCPandCLI/MCP ecosystem.png` | MCP ecosystem diagram |
 | `playwritelinkedinarticles/browservscontextvspage.md` | Article explaining Browser vs Browser Context vs Page in beginner and deep-dive terms |
 | `playwritelinkedinarticles/differencetsvsspects.md` | LinkedIn article — `.ts` vs `.spec.ts` explained |
 | `playwritelinkedinarticles/playwright-multi-browser-testing.md` | LinkedIn article — multi-browser testing & Playwright's bundled browsers |

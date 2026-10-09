@@ -47,4 +47,28 @@ Agenda:
 
   What is MCP:
 * [ ] =========
-* [ ]
+
+* MCP is a standard way for an AI client to connect to external context and capabilites in a structured, resuable way
+
+  * 3 core things in MCP
+
+    * Tools ( this is MCP tools not AI Agent tools)
+
+      * Actions the AI can call. Example: browser, playwright, database, filesystem
+      * Useful because: they let the model Do things execute steps and return results
+    * Prompts
+
+      * Reusable instructions or templates
+      * Example: test plan prompt, bug-report prompt,code-review prompt
+      * Useful because: they guide the model, stadardize workflow and save time
+    * Resources
+
+      * Context/data the AI can read
+      * Example: docs, files,schemas, logs API specs
+      * Useful because: they give the model the right information before it answer or acts
+    * Why MCP matters
+
+      * one standard for may tools
+      * reusable across apps and agents
+      * safer, structured access
+      * better context = better answers + better actions
