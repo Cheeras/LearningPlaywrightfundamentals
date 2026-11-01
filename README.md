@@ -58,7 +58,8 @@ LearningPlaywrightFundamentals/
     │   ├── 07_normal_pw.ts
     │   ├── 08_tta_check.spec.ts
     │   ├── 09_applogin.spec.ts
-    │   └── 10_example.spec.ts
+        │   ├── 10_example.spec.ts
+        │   └── 11_example.spec.ts
     ├── 02_TestAnnotations/
     │   ├── 11_TestAnnotations.spec.ts
     │   └── 12_TestDescribe.spec.ts
@@ -117,7 +118,8 @@ LearningPlaywrightFundamentals/
 | `playwright-report/` | Auto-generated HTML test reports from test runs |
 | `test-results/` | Auto-generated debugging artifacts (traces, screenshots) on test failure |
 | `node_modules/` | Installed npm packages (auto-generated, do not edit) |
-| `tests/01_Basics/example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
+| `tests/01_Basics/10_example.spec.ts` | Sample end-to-end test cases for Playwright.dev |
+| `tests/01_Basics/11_example.spec.ts` | Basic Playwright.dev title verification test |
 | `tests/01_Basics/applogin.spec.ts` | Application login test cases |
 | `tests/01_Basics/01_TA.spec.ts` | Navigation & multi-user browser context (BCP) tests |
 | `tests/01_Basics/02_multiple_context.spec.ts` | Multi-user browser context test (Admin & Viewer) |
@@ -202,7 +204,7 @@ Run the full suite with terminal output:
 npx playwright test --reporter=list
 ```
 
-The browser is visible by default in this project. To generate and open the configured HTML report, run `npx playwright test` and then `npx playwright show-report`.
+The browser runs in headless mode by default in this project (no browser UI). To see the browser window while debugging, use `npx playwright test --headed`. To generate and open the configured HTML report, run `npx playwright test` and then `npx playwright show-report`.
 
 ## The `page` Test Fixture
 
